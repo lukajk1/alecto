@@ -9,7 +9,7 @@ public class SlowMotion : MonoBehaviour
     private LensDistortion lensDistortion;
     private ChromaticAberration chromaticAberration;
 
-    private float saturationChange = -30f;
+    private float saturationChange = -50f;
     private float lensDistortChange = -0.4f;
     private float chromaticAberrationChange = 0.7f;
     private bool _sloMo;

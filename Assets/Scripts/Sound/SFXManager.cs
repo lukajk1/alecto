@@ -33,6 +33,9 @@ public class SFXManager : MonoBehaviour
 
         audioSource.pitch *= Game.TimeScale;
 
+        float clipDuration = clip.length / audioSource.pitch;
+        float extraEchoDuration = 0f;
+
         if (Game.TimeScale < 1f)
         {
             AudioEchoFilter echo = audioSource.gameObject.AddComponent<AudioEchoFilter>();
@@ -40,12 +43,18 @@ public class SFXManager : MonoBehaviour
             echo.decayRatio = 0.4f;
             echo.wetMix = 1f;
             echo.dryMix = 1f;
+
+            // Estimate time for echo to decay
+            float decayThreshold = 0.01f;
+            int echoCount = Mathf.CeilToInt(Mathf.Log(decayThreshold) / Mathf.Log(echo.decayRatio));
+            extraEchoDuration = echoCount * (echo.delay / 1000f);
         }
 
         audioSource.Play();
-        Destroy(audioSource.gameObject, clip.length / audioSource.pitch);
-    }    
-    
+        Destroy(audioSource.gameObject, clipDuration + extraEchoDuration);
+    }
+
+
     public void PlaySFXClip(SoundType type, AudioClip clip, Vector3 positionToPlaySound, bool varyPitch = true)
     {
         AudioSource audioSource = Instantiate(soundFXObject, positionToPlaySound, Quaternion.identity);
