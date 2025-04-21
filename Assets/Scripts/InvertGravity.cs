@@ -31,7 +31,7 @@ public class InvertGravity : MonoBehaviour
         }
         if (useBlackHoleAttraction && shot)
         {
-            Debug.Log("gets here");
+            //Debug.Log("gets here");
             Vector3 normalizedRelativeDirectionVector = (blackHole.transform.position - transform.position).normalized;
             rb.AddForce(normalizedRelativeDirectionVector * GravityConstant, ForceMode.Acceleration);
         }

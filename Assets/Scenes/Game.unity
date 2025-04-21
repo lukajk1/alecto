@@ -5564,6 +5564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 860153638}
   - component: {fileID: 860153639}
+  - component: {fileID: 860153640}
   m_Layer: 0
   m_Name: shooting
   m_TagString: Untagged
@@ -5599,6 +5600,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackHole: {fileID: 7502562210957680810, guid: d4ba05394f854ef478d5adccab4606eb, type: 3}
+--- !u!114 &860153640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860153637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c25c6bf2ae82f646a9e1c0213c7e0f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   volume: {fileID: 536205849}
 --- !u!1 &880239386 stripped
 GameObject:

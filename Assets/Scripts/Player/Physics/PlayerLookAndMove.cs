@@ -298,8 +298,8 @@ public class PlayerLookAndMove : MonoBehaviour
 
     private void DetermineCamMovement() // I guess this doesn't need to be broken out because where you're looking also determines how movement works?
     {
-        xRotation -= Input.GetAxis("Mouse Y") * Time.deltaTime * Sensitivity;
-        yRotation += Input.GetAxis("Mouse X") * Time.deltaTime * Sensitivity;
+        xRotation -= Input.GetAxis("Mouse Y") * Time.unscaledDeltaTime * Sensitivity;
+        yRotation += Input.GetAxis("Mouse X") * Time.unscaledDeltaTime * Sensitivity;
 
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); // prevent looking above/below 90
 

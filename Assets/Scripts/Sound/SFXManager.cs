@@ -26,15 +26,24 @@ public class SFXManager : MonoBehaviour
     public void PlaySFXClip(AudioClip clip, Vector3 positionToPlaySound, bool varyPitch = true)
     {
         AudioSource audioSource = Instantiate(soundFXObject, positionToPlaySound, Quaternion.identity);
-
         audioSource.clip = clip;
+
+        if (varyPitch)
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
+
+        audioSource.pitch *= Game.TimeScale;
+
+        if (Game.TimeScale < 1f)
+        {
+            AudioEchoFilter echo = audioSource.gameObject.AddComponent<AudioEchoFilter>();
+            echo.delay = 300f;
+            echo.decayRatio = 0.4f;
+            echo.wetMix = 1f;
+            echo.dryMix = 1f;
+        }
+
         audioSource.Play();
-        
-        if (varyPitch) audioSource.pitch = Random.Range(0.9f, 1.1f);
-
-        audioSource.pitch *= Game.TimeScale; // scale pitch with timescale
-
-        Destroy(audioSource.gameObject, audioSource.clip.length);
+        Destroy(audioSource.gameObject, clip.length / audioSource.pitch);
     }    
     
     public void PlaySFXClip(SoundType type, AudioClip clip, Vector3 positionToPlaySound, bool varyPitch = true)
