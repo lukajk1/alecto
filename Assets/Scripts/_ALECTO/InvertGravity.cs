@@ -29,12 +29,12 @@ public class InvertGravity : MonoBehaviour
         {
             blackHole = GameObject.FindGameObjectWithTag("BlackHole");
         }
-        if (useBlackHoleAttraction && shot)
-        {
-            //Debug.Log("gets here");
-            Vector3 normalizedRelativeDirectionVector = (blackHole.transform.position - transform.position).normalized;
-            rb.AddForce(normalizedRelativeDirectionVector * GravityConstant, ForceMode.Acceleration);
-        }
+        //if (useBlackHoleAttraction && shot)
+        //{
+        //    //Debug.Log("gets here");
+        //    Vector3 normalizedRelativeDirectionVector = (blackHole.transform.position - transform.position).normalized;
+        //    rb.AddForce(normalizedRelativeDirectionVector * GravityConstant, ForceMode.Acceleration);
+        //}
 
         if (Input.GetMouseButtonDown(0))
         {

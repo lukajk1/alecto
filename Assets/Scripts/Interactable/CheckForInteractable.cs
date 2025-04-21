@@ -25,7 +25,7 @@ public class CheckForInteractable : MonoBehaviour
 
         Vector3 pos = fpCamera.transform.position;
         Vector3 fPos = fpCamera.transform.forward;
-        Debug.DrawLine(pos + (fPos * 0.3f), (pos + fPos) + (fPos * Range), Color.red, 2f);
+        //Debug.DrawLine(pos + (fPos * 0.3f), (pos + fPos) + (fPos * Range), Color.red, 2f);
 
         if (Physics.Raycast(pos + (fPos * 0.3f), fPos, out hit, Range)) // start the raycast a little further out so player-related colliders don't block it
         {

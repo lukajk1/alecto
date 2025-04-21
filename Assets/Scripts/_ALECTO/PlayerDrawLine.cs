@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DrawLine : MonoBehaviour
+public class PlayerDrawLine : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private LineRenderer lineRenderer;
@@ -31,7 +31,6 @@ public class DrawLine : MonoBehaviour
 
     private void Update()
     {
-        //lineRenderer.positionCount = 2;
         origin = transform.position + transform.forward * 1.1f;
 
 
@@ -40,28 +39,29 @@ public class DrawLine : MonoBehaviour
         {
             hitIndicator.transform.position = hit.point;
             HitIndicatorActive = true;
-
             SetSizeOfIndicator();
-
-            //lineRenderer.SetPosition(1, hit.point);
         }
         else
         {
             HitIndicatorActive = false;
-            //lineRenderer.SetPosition(1, origin + transform.forward * lineRange);
         }
-        //lineRenderer.SetPosition(0, origin);
+
+
+
+        if (hit.collider.GetComponent<Rigidbody>() != null)
+        {
+
+        }
     }
 
     void SetSizeOfIndicator()
     {
-        float referenceDistance = 10f;
-        float referenceScale = 1f;
+        float referenceDistance = 15f;
 
         float distance = Vector3.Distance(cam.transform.position, hitIndicator.transform.position);
         float scaleFactor = distance / referenceDistance;
 
-        hitIndicator.transform.localScale = originalIndicatorScale * referenceScale * scaleFactor;
+        hitIndicator.transform.localScale = originalIndicatorScale * scaleFactor;
 
     }
 

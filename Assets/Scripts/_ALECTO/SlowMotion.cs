@@ -12,6 +12,7 @@ public class SlowMotion : MonoBehaviour
     private float saturationChange = -50f;
     private float lensDistortChange = -0.4f;
     private float chromaticAberrationChange = 0.7f;
+    private float contrastChange = 34f;
     private bool _sloMo;
     private bool SloMo
     {
@@ -21,18 +22,7 @@ public class SlowMotion : MonoBehaviour
             if (_sloMo != value)
             {
                 _sloMo = value;
-                if (value)
-                {
-                    colorAdjustments.saturation.value = saturationChange;
-                    lensDistortion.intensity.value = lensDistortChange;
-                    chromaticAberration.intensity.value = chromaticAberrationChange;
-                }
-                else
-                {
-                    colorAdjustments.saturation.value = 0f;
-                    lensDistortion.intensity.value = 0f;
-                    chromaticAberration.intensity.value = 0f;
-                }
+                ToggleScreenEffects(value);
             }
         }
     }
@@ -55,6 +45,23 @@ public class SlowMotion : MonoBehaviour
         {
             Game.TimeScale = 1f;
             SloMo = false;
+        }
+    }
+    void ToggleScreenEffects(bool value)
+    {
+        if (value)
+        {
+            colorAdjustments.saturation.value = saturationChange;
+            lensDistortion.intensity.value = lensDistortChange;
+            chromaticAberration.intensity.value = chromaticAberrationChange;
+            colorAdjustments.contrast.value = contrastChange;
+        }
+        else
+        {
+            colorAdjustments.saturation.value = 0f;
+            lensDistortion.intensity.value = 0f;
+            chromaticAberration.intensity.value = 0f;
+            colorAdjustments.contrast.value = 0f;
         }
     }
 }
