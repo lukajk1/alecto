@@ -15,7 +15,7 @@ public class PullPlayerToObject : MonoBehaviour
     Vector3 localAnchor;
 
     float extraGravityForce = 19f; // this is used to help the playercontroller stick to the ground better. However it needs to be compensated for.
-    float pullForce = 35f;
+    //float pullForce = 35f;
     float lrWidth = 0.3f;
     bool hasRigidBody;
 
@@ -103,7 +103,7 @@ public class PullPlayerToObject : MonoBehaviour
             }
 
             lr.SetPosition(0, transform.position + new Vector3(0f, -0.35f, 0f));
-            lr.enabled = true;
+            //lr.enabled = true;
         }
         else
         {

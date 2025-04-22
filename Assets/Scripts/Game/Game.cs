@@ -97,6 +97,7 @@ public class Game : MonoBehaviour
             }
         }
     }
+    public static readonly float GravityConstant = 9.81f;
 
     public static int _score = 0;
     public static int Score

@@ -26,6 +26,7 @@ public class SlowMotion : MonoBehaviour
             {
                 _sloMo = value;
                 ToggleScreenEffects(value);
+                Game.TimeScale = value ? sloMoScale : 1f;
             }
         }
     }
@@ -41,12 +42,10 @@ public class SlowMotion : MonoBehaviour
 
         if (Input.GetKey(KeyCode.E)) // held down as opposed to distinct button press
         {
-            Game.TimeScale = sloMoScale;
             SloMo = true;
         }
         else
         {
-            Game.TimeScale = 1f;
             SloMo = false;
         }
     }

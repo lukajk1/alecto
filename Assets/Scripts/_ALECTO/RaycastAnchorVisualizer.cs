@@ -5,6 +5,8 @@ public class RaycastAnchorVisualizer : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject hitIndicator;
 
+    string pullableLayerName = "Pullable";
+    int pullableLayer;
     private Vector3 originalIndicatorScale;
 
     private readonly float lineRange = 50f;
@@ -30,6 +32,7 @@ public class RaycastAnchorVisualizer : MonoBehaviour
     {
         originalIndicatorScale = hitIndicator.transform.localScale;
         positionInFrontOfPlayer = transform.position + (transform.forward * 5f);
+        pullableLayer = LayerMask.GetMask(pullableLayerName);
     }
     private void Update()
     {
@@ -51,7 +54,7 @@ public class RaycastAnchorVisualizer : MonoBehaviour
     public RaycastHit RaycastToEnv()
     {
         RaycastHit hit;
-        Physics.Raycast(origin, transform.forward, out hit, lineRange);
+        Physics.Raycast(origin, transform.forward, out hit, lineRange, pullableLayer, QueryTriggerInteraction.Collide);
         return hit;
     }
 

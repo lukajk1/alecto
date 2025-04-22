@@ -27,7 +27,7 @@ public class PlayerLookAndMove : MonoBehaviour
         }
     }
 
-    private float _jumpForce = 9.5f * 65f;
+    private float _jumpForce = 9.0f * 65f;
     public float JumpForce
     {
         get => _jumpForce;
@@ -41,6 +41,7 @@ public class PlayerLookAndMove : MonoBehaviour
     }
 
     private float extraGravityForce = 19f;
+    private float gravityMultiplier = 1.6f;
     private float airStrafeInfluence = 0.75f; // modify currentSpeedMultiplier in the air instead?
     private float initJumpForce;
     private float initMoveSpeed;
@@ -195,6 +196,7 @@ public class PlayerLookAndMove : MonoBehaviour
         //Debug.DrawLine(transform.position, transform.position + Vector3.down * 0.35f, Color.red);
 
         rb.AddForce(Vector3.down * extraGravityForce, ForceMode.Force); // stick to ground better with a constant downwards force added
+        rb.AddForce(Vector3.down * Game.GravityConstant * gravityMultiplier, ForceMode.Acceleration); // stick to ground better with a constant downwards force added
 
         if (rb.linearVelocity.y < -0.1f && !IsGrounded)
         {

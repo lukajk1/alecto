@@ -10,7 +10,7 @@ public class InvertGravity : MonoBehaviour
     [SerializeField] private bool useBlackHoleAttraction;
     [SerializeField] private float customGravityScalar = 0f;
 
-    const float GravityConstant = 9.81f;
+    private float GravityConstant;
 
     private GameObject blackHole;
 
@@ -18,6 +18,8 @@ public class InvertGravity : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        GravityConstant = Game.GravityConstant; 
+        blackHole = GameObject.FindGameObjectWithTag("BlackHole");
     }
     void FixedUpdate()
     {
@@ -25,23 +27,11 @@ public class InvertGravity : MonoBehaviour
         if (normalGravity) rb.AddForce(new Vector3(0f, -GravityConstant, 0f), ForceMode.Acceleration);
         if (horizontalGravity) rb.AddForce(new Vector3(0f, 0f, -GravityConstant), ForceMode.Acceleration);
 
-        if (shot) // run on next fixedupdate cycle
+        if (useBlackHoleAttraction)
         {
-            blackHole = GameObject.FindGameObjectWithTag("BlackHole");
+            Vector3 normalizedRelativeDirectionVector = (blackHole.transform.position - transform.position).normalized;
+            rb.AddForce(normalizedRelativeDirectionVector * GravityConstant, ForceMode.Acceleration);
         }
-        //if (useBlackHoleAttraction && shot)
-        //{
-        //    //Debug.Log("gets here");
-        //    Vector3 normalizedRelativeDirectionVector = (blackHole.transform.position - transform.position).normalized;
-        //    rb.AddForce(normalizedRelativeDirectionVector * GravityConstant, ForceMode.Acceleration);
-        //}
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            shot = true;
-        }
-
-
 
         if (customGravityScalar > 0f)
         {
@@ -53,6 +43,5 @@ public class InvertGravity : MonoBehaviour
 
         if (rb.linearVelocity.magnitude > 3.5f) SFXManager.i.PlaySFXClip(PlayerSFXList.i.jumpLanding, transform.position);
     }
-
 
 }

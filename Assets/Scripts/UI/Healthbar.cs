@@ -62,13 +62,19 @@ public class Healthbar : MonoBehaviour
 
     protected IEnumerator LerpWhiteHealth()
     {
-        float elapsed = 0;
-        while (elapsed < lerpDuration) 
+        float elapsed = 0f;
+        float startFill = whiteHealth.fillAmount;
+        float targetFill = healthbar.fillAmount;
+
+        while (elapsed < lerpDuration)
         {
             elapsed += Time.deltaTime;
-            whiteHealth.fillAmount = Mathf.Lerp(whiteHealth.fillAmount, healthbar.fillAmount, elapsed);
+            float t = elapsed / lerpDuration;
+            whiteHealth.fillAmount = Mathf.Lerp(startFill, targetFill, t);
             yield return null;
         }
+
+        whiteHealth.fillAmount = targetFill;
         lerpWhiteHealth = null;
     }
 }
