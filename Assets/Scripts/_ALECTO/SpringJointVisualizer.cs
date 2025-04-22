@@ -20,26 +20,17 @@ public class SpringJointVisualizer : MonoBehaviour
 
         springJoint = GetComponent<SpringJoint>();
         connectedBodyTransform = springJoint.connectedBody.gameObject.transform;
-        Debug.Log(springJoint.connectedBody.gameObject.name);
 
         initialized = true;
     }
 
     void Update()
     {
-        //if (initialized)
-        //{
-        //    lineRenderer.SetPosition(0, transform.position);
-        //    lineRenderer.SetPosition(1, springJoint.connectedBody.position);
-        //    lineRenderer.enabled = true;
-        //}
 
         if (initialized)
         {
             lr.SetPosition(0, transform.TransformPoint(springJoint.anchor));
             lr.SetPosition(1, connectedBodyTransform.TransformPoint(springJoint.connectedAnchor));
-            //lr.SetPosition(1, transform.TransformPoint(springJoint.connectedAnchor));
-            //lr.SetPosition(1, Game.i.PlayerTransform.position);
         }
     }
 }

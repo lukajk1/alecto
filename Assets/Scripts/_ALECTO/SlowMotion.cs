@@ -13,6 +13,9 @@ public class SlowMotion : MonoBehaviour
     private float lensDistortChange = -0.4f;
     private float chromaticAberrationChange = 0.7f;
     private float contrastChange = 34f;
+
+    float sloMoScale = 0.4f;
+
     private bool _sloMo;
     private bool SloMo
     {
@@ -36,9 +39,9 @@ public class SlowMotion : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetMouseButton(1)) // held down as opposed to distinct button press
+        if (Input.GetKey(KeyCode.E)) // held down as opposed to distinct button press
         {
-            Game.TimeScale = 0.5f;
+            Game.TimeScale = sloMoScale;
             SloMo = true;
         }
         else
