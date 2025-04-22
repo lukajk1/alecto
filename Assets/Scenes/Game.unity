@@ -12109,7 +12109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32472578edbdcda4d8526e9713609254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Invulnerable: 1
+  Invulnerable: 0
   DieInOneHit: 0
   SpawningEnabled: 0
 --- !u!1 &1826132094
@@ -15290,6 +15290,18 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &6546047222706281075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867651136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c57030d2c3ad049b82b4b3226c52cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7161811003240296047
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15619,6 +15631,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2017809163173231762, guid: d2967d29acc58da49bedfbf46ac546b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1956524253}
+    - targetCorrespondingSourceObject: {fileID: 1609278354230286542, guid: d2967d29acc58da49bedfbf46ac546b2, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 6546047222706281075}
     - targetCorrespondingSourceObject: {fileID: 1609278354230286542, guid: d2967d29acc58da49bedfbf46ac546b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6546047222706281073}
