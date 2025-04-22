@@ -7,12 +7,11 @@ public class ShootBlackHole : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            GameObject projectile = Instantiate(blackHole, transform.position + transform.forward, Quaternion.identity);
-            projectile.GetComponent<BlackHoleProjectile>().Initialize(transform.forward);
-        }
-
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    GameObject projectile = Instantiate(blackHole, transform.position + transform.forward, Quaternion.identity);
+        //    projectile.GetComponent<BlackHoleProjectile>().Initialize(transform.forward);
+        //}
 
     }
 }

@@ -11,6 +11,6 @@ public class DummySystem : MonoBehaviour
         if (Invulnerable) FindAnyObjectByType<PlayerUnit>().DebugDamageModifier = 0;
         else if (DieInOneHit) FindAnyObjectByType<PlayerUnit>().DebugDamageModifier = 999;
 
-        WaveManager.i.gameObject.SetActive(SpawningEnabled);
+        //WaveManager.i.gameObject.SetActive(SpawningEnabled);
     }
 }

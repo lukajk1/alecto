@@ -1,31 +1,45 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SpringJoint))]
-[RequireComponent(typeof(LineRenderer))]
 public class SpringJointVisualizer : MonoBehaviour
 {
-    private SpringJoint springJoint;
-    private LineRenderer lineRenderer;
+    SpringJoint springJoint;
+    LineRenderer lr;
+    Transform connectedBodyTransform;
 
-    void Awake()
+    float lrWidth = 0.3f;
+
+    bool initialized;
+    public void Initialize(LineRenderer lr)
     {
+        this.lr = lr;
+        lr.positionCount = 2;
+        lr.useWorldSpace = true;
+        lr.startWidth = lrWidth;
+        lr.endWidth = lrWidth;
+        lr.enabled = true;
+
         springJoint = GetComponent<SpringJoint>();
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.positionCount = 2;
-        lineRenderer.useWorldSpace = true;
+        connectedBodyTransform = springJoint.connectedBody.gameObject.transform;
+        Debug.Log(springJoint.connectedBody.gameObject.name);
+
+        initialized = true;
     }
 
     void Update()
     {
-        if (springJoint.connectedBody != null)
+        //if (initialized)
+        //{
+        //    lineRenderer.SetPosition(0, transform.position);
+        //    lineRenderer.SetPosition(1, springJoint.connectedBody.position);
+        //    lineRenderer.enabled = true;
+        //}
+
+        if (initialized)
         {
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, springJoint.connectedBody.position);
-            lineRenderer.enabled = true;
-        }
-        else
-        {
-            lineRenderer.enabled = false;
+            lr.SetPosition(0, transform.TransformPoint(springJoint.anchor));
+            lr.SetPosition(1, connectedBodyTransform.TransformPoint(springJoint.connectedAnchor));
+            //lr.SetPosition(1, transform.TransformPoint(springJoint.connectedAnchor));
+            //lr.SetPosition(1, Game.i.PlayerTransform.position);
         }
     }
 }
