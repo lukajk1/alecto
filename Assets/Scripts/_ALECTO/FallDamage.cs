@@ -24,4 +24,9 @@ public class FallDamage : MonoBehaviour
         }
         speedLastFrame = rb.linearVelocity.magnitude;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    { 
+
+    }
 }
