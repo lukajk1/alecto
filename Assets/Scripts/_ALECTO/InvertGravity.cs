@@ -9,8 +9,10 @@ public class InvertGravity : MonoBehaviour
     [SerializeField] private bool horizontalGravity;
     [SerializeField] private bool useBlackHoleAttraction;
     [SerializeField] private float customGravityScalar = 0f;
+    [SerializeField] private bool applyBuoyancy;
 
     private float GravityConstant;
+    private bool submerged;
 
     private GameObject blackHole;
 
@@ -37,11 +39,38 @@ public class InvertGravity : MonoBehaviour
         {
             rb.AddForce(new Vector3(0f, -GravityConstant * customGravityScalar, 0f), ForceMode.Acceleration);
         }
+
+        if (submerged)
+        {
+            // buoyancy = fluid density * g * fluid volume displaced by object 
+
+            rb.AddForce(Vector3.up * GravityConstant * 1.3f * rb.mass, ForceMode.Force);
+            rb.angularDamping = 0.6f;
+            rb.linearDamping = 0.6f;
+        }
+        else
+        {
+            rb.angularDamping = 0.05f;
+            rb.linearDamping = 0f;
+        }
     }
     void OnCollisionEnter(Collision collision)
     {
 
-        if (rb.linearVelocity.magnitude > 3.5f) SFXManager.i.PlaySFXClip(PlayerSFXList.i.jumpLanding, transform.position);
+        if (rb.linearVelocity.magnitude > 3.5f) SFXManager.i.PlaySFXClip(PlayerSFXList.i.jumpLanding, transform.position, type: SFXManager.SoundType.HasFalloff);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Fluid"))
+        {
+            submerged = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        submerged = false;
     }
 
 }

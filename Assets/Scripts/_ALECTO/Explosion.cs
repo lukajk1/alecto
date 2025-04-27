@@ -5,6 +5,9 @@ public class Explosion : MonoBehaviour
     [SerializeField] float explosionForce;
     [SerializeField] float explosionRadius;
 
+    float sfxMinDist = 8f;
+    float sfxMaxDist = 100f;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.T)) Explode();
@@ -25,5 +28,7 @@ public class Explosion : MonoBehaviour
                 rb.AddTorque(randomTorque, ForceMode.Impulse);
             }
         }
+
+        SFXManager.i.PlaySFXClip(EnvSFXList.i.explosion, transform.position, type: SFXManager.SoundType.HasFalloff, minDist: sfxMinDist, maxDist: sfxMaxDist);
     }
 }

@@ -26,7 +26,7 @@ public class Ragdoll : MonoBehaviour
     {
         foreach (Rigidbody rb in rigidbodies)
         {
-            rb.useGravity = active;
+            rb.useGravity = !active;
             rb.isKinematic = !active;
         }
     }

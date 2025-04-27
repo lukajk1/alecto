@@ -20,10 +20,11 @@ public class SFXManager : MonoBehaviour
 
     public enum SoundType
     {
-        _3D
+        NoDirectionOrFalloff,
+        HasFalloff
     }
 
-    public void PlaySFXClip(AudioClip clip, Vector3 positionToPlaySound, bool varyPitch = true)
+    public void PlaySFXClip(AudioClip clip, Vector3 positionToPlaySound, bool varyPitch = true, SoundType type = SoundType.NoDirectionOrFalloff, float minDist = 0f, float maxDist = 0f)
     {
         AudioSource audioSource = Instantiate(soundFXObject, positionToPlaySound, Quaternion.identity);
         audioSource.clip = clip;
@@ -32,6 +33,13 @@ public class SFXManager : MonoBehaviour
             audioSource.pitch = Random.Range(0.9f, 1.1f);
 
         audioSource.pitch *= Game.TimeScale;
+
+        if (type == SoundType.HasFalloff)
+        {
+            audioSource.spatialBlend = 1;
+            audioSource.minDistance = minDist;
+            audioSource.maxDistance = maxDist;
+        }
 
         float clipDuration = clip.length / audioSource.pitch;
         float extraEchoDuration = 0f;
@@ -54,21 +62,6 @@ public class SFXManager : MonoBehaviour
         Destroy(audioSource.gameObject, clipDuration + extraEchoDuration);
     }
 
-
-    public void PlaySFXClip(SoundType type, AudioClip clip, Vector3 positionToPlaySound, bool varyPitch = true)
-    {
-        AudioSource audioSource = Instantiate(soundFXObject, positionToPlaySound, Quaternion.identity);
-
-        audioSource.clip = clip;
-        audioSource.Play();
-        audioSource.spatialBlend = 1;
-        audioSource.minDistance = 20f;
-        audioSource.maxDistance = 20f;
-        
-        if (varyPitch) audioSource.pitch = Random.Range(0.9f, 1.1f);
-
-        Destroy(audioSource.gameObject, audioSource.clip.length);
-    }
 
 
 }

@@ -8,4 +8,5 @@ public class EnvSFXList : MonoBehaviour
         if (i == null) i = this;
     }
     [SerializeField] public AudioClip crystalSpawn;
+    [SerializeField] public AudioClip explosion;
 }

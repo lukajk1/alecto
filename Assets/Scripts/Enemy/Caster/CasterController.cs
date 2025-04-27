@@ -122,7 +122,7 @@ public class CasterController : UnitController
         GameObject bullet = Instantiate(casterBullet, bulletOrigin.position, Quaternion.identity);
         bullet.GetComponent<CasterBullet>().Initialize(dir.normalized, bulletMaxDuration, enemyUnit.BaseDamage, bulletSpeed);
 
-        SFXManager.i.PlaySFXClip(SFXManager.SoundType._3D, EnemySFXList.i.casterAttack, transform.position);
+        SFXManager.i.PlaySFXClip(EnemySFXList.i.casterAttack, transform.position, type: SFXManager.SoundType.HasFalloff);
 
         StartCoroutine(AttackCD());
 

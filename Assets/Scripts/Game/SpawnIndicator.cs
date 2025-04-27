@@ -15,7 +15,7 @@ public class SpawnIndicator : MonoBehaviour
     }
     private IEnumerator Countdown()
     {
-        SFXManager.i.PlaySFXClip(SFXManager.SoundType._3D, EnemySFXList.i.enemySpawn, transform.position);
+        SFXManager.i.PlaySFXClip(EnemySFXList.i.enemySpawn, transform.position, type: SFXManager.SoundType.HasFalloff);
         yield return new WaitForSeconds(waitPeriod);
         Instantiate(enemyPrefab, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.05f); // juust to make sure the instantiation goes through. idk if this actually does anything or not

@@ -7,6 +7,7 @@ TagManager:
   - Interact
   - EnvCollidable
   - BlackHole
+  - Fluid
   layers:
   - Default
   - TransparentFX
