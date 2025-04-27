@@ -1,6 +1,8 @@
 using UnityEngine;
-using UnityEngine.Audio;
+using System;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class InvertGravity : MonoBehaviour
 {
     private Rigidbody rb;
@@ -9,10 +11,22 @@ public class InvertGravity : MonoBehaviour
     [SerializeField] private bool horizontalGravity;
     [SerializeField] private bool useBlackHoleAttraction;
     [SerializeField] private float customGravityScalar = 0f;
-    [SerializeField] private bool applyBuoyancy;
 
     private float GravityConstant;
-    private bool submerged;
+    public event Action<bool> OnSubmergedChanged;
+    private bool _submerged;
+    private bool Submerged
+    {
+        get => _submerged;
+        set
+        {
+            if (_submerged != value)
+            {
+                _submerged = value;
+                OnSubmergedChanged?.Invoke(value);
+            }
+        }
+    }
 
     private GameObject blackHole;
 
@@ -40,7 +54,7 @@ public class InvertGravity : MonoBehaviour
             rb.AddForce(new Vector3(0f, -GravityConstant * customGravityScalar, 0f), ForceMode.Acceleration);
         }
 
-        if (submerged)
+        if (Submerged)
         {
             // buoyancy = fluid density * g * fluid volume displaced by object 
 
@@ -64,13 +78,16 @@ public class InvertGravity : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fluid"))
         {
-            submerged = true;
+            Submerged = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        submerged = false;
+        if (other.gameObject.CompareTag("Fluid"))
+        {
+            Submerged = false;
+        }
     }
 
 }

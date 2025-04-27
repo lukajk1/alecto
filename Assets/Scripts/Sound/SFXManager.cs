@@ -46,16 +46,16 @@ public class SFXManager : MonoBehaviour
 
         if (Game.TimeScale < 1f)
         {
-            AudioEchoFilter echo = audioSource.gameObject.AddComponent<AudioEchoFilter>();
-            echo.delay = 300f;
-            echo.decayRatio = 0.4f;
-            echo.wetMix = 1f;
-            echo.dryMix = 1f;
+            //AudioEchoFilter echo = audioSource.gameObject.AddComponent<AudioEchoFilter>();
+            //echo.delay = 300f;
+            //echo.decayRatio = 0.4f;
+            //echo.wetMix = 1f;
+            //echo.dryMix = 1f;
 
-            // Estimate time for echo to decay
-            float decayThreshold = 0.01f;
-            int echoCount = Mathf.CeilToInt(Mathf.Log(decayThreshold) / Mathf.Log(echo.decayRatio));
-            extraEchoDuration = echoCount * (echo.delay / 1000f);
+            //// Estimate time for echo to decay
+            //float decayThreshold = 0.01f;
+            //int echoCount = Mathf.CeilToInt(Mathf.Log(decayThreshold) / Mathf.Log(echo.decayRatio));
+            //extraEchoDuration = echoCount * (echo.delay / 1000f);
         }
 
         audioSource.Play();

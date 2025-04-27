@@ -7,7 +7,7 @@ public class Ragdoll : MonoBehaviour
     private void Start()
     {
         rigidbodies = GetComponentsInChildren<Rigidbody>();
-        SetRigidbodies(false);
+        SetRagdollPhysics(false);
     }
     private void Update()
     {
@@ -19,14 +19,14 @@ public class Ragdoll : MonoBehaviour
     void TurnToRagdoll()
     {
         controller.enabled = false;
-        SetRigidbodies(true);
+        SetRagdollPhysics(true);
     }
 
-    void SetRigidbodies(bool active)
+    void SetRagdollPhysics(bool active)
     {
         foreach (Rigidbody rb in rigidbodies)
         {
-            rb.useGravity = !active;
+            rb.useGravity = active;
             rb.isKinematic = !active;
         }
     }

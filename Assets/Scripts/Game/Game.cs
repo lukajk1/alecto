@@ -82,6 +82,7 @@ public class Game : MonoBehaviour
             else AudioListener.pause = false;
         }
     }
+    public static event Action<float> OnTimeScaleChanged;
 
     private static float _timeScale = 1f;
     public static float TimeScale
@@ -94,6 +95,7 @@ public class Game : MonoBehaviour
                 // updating only when the value changes prevents repeatededly invoking events if I hook on up here later
                 _timeScale = value;
                 Time.timeScale = _timeScale;
+                OnTimeScaleChanged?.Invoke(value);
             }
         }
     }

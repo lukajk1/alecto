@@ -1,3 +1,6 @@
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,7 +21,7 @@ public class PauseMenu : MonoBehaviour
         backToGame.onClick.AddListener(() => SetEscMenu(false));
         settings.onClick.AddListener(() => SettingsManager.i.Open());
         mainMenu.onClick.AddListener(() => ToMainMenu());
-        quit.onClick.AddListener(() => Application.Quit());
+        quit.onClick.AddListener(() => Quit());
         escPage.SetActive(false);
     }
 
@@ -49,6 +52,14 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(Game.mainMenuSceneName);
     }
 
+    void Quit()
+    {
+        #if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
+    }
     private void SetEscMenu(bool value)
     {
         escPage.SetActive(value);

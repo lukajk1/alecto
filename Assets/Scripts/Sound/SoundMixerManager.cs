@@ -19,6 +19,16 @@ public class SoundMixerManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Game.OnTimeScaleChanged += ProcessTimeScale;
+    }
+
+    private void OnDisable()
+    {
+        Game.OnTimeScaleChanged -= ProcessTimeScale;
+    }
+
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("masterVolume", Mathf.Log10(volume) * 20f);
@@ -30,5 +40,23 @@ public class SoundMixerManager : MonoBehaviour
     public void SetMusicVolume(float volume)
     {
         audioMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20f);
+    }
+
+    private void ProcessTimeScale(float value)
+    {
+        if (value < 1f)
+        {
+            SetEcho(true);
+        }
+        else
+        {
+            SetEcho(false);
+        }
+    }
+
+    public void SetEcho(bool active)
+    {
+        audioMixer.SetFloat("echoWetMix", active? 1f : 0f);
+        audioMixer.SetFloat("echoPitch", active? 0.5f : 1f);
     }
 }
