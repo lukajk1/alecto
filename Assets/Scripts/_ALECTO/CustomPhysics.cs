@@ -3,7 +3,7 @@ using System;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
-public class InvertGravity : MonoBehaviour
+public class CustomPhysics : MonoBehaviour
 {
     private Rigidbody rb;
     [SerializeField] private bool normalGravity;
@@ -11,6 +11,8 @@ public class InvertGravity : MonoBehaviour
     [SerializeField] private bool horizontalGravity;
     [SerializeField] private bool useBlackHoleAttraction;
     [SerializeField] private float customGravityScalar = 0f;
+    [SerializeField] private float approximateVolumeInCubicMeters = 1f;
+    [SerializeField] private float mass = 10f;
 
     private float GravityConstant;
     public event Action<bool> OnSubmergedChanged;
@@ -36,6 +38,7 @@ public class InvertGravity : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         GravityConstant = Game.GravityConstant; 
         blackHole = GameObject.FindGameObjectWithTag("BlackHole");
+        rb.mass = mass;
     }
     void FixedUpdate()
     {

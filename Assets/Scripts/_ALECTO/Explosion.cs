@@ -4,6 +4,7 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] float explosionForce;
     [SerializeField] float explosionRadius;
+    [SerializeField] GameObject explosionDecal;
 
     float sfxMinDist = 8f;
     float sfxMaxDist = 100f;
@@ -30,5 +31,9 @@ public class Explosion : MonoBehaviour
         }
 
         SFXManager.i.PlaySFXClip(EnvSFXList.i.explosion, transform.position, type: SFXManager.SoundType.HasFalloff, minDist: sfxMinDist, maxDist: sfxMaxDist);
+
+        Quaternion rotation = Quaternion.Euler(90f, transform.eulerAngles.y, 0f);
+        Instantiate(explosionDecal, transform.position, rotation);
+
     }
 }

@@ -5,7 +5,7 @@ using System.Collections;
 public class ContinuousAudioSource : MonoBehaviour
 {
     AudioLowPassFilter lowPassFilter;
-    [SerializeField] private InvertGravity invertGrav;
+    [SerializeField] private CustomPhysics invertGrav;
     private void OnEnable()
     {
         invertGrav.OnSubmergedChanged += SetLowPass;

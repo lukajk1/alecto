@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crystalSpawn: {fileID: 8300000, guid: e92a53c99144d6a4180d852bd15d83b2, type: 3}
+  explosion: {fileID: 8300000, guid: a06771660ffcc634fb05543866aa6c11, type: 3}
 --- !u!1 &4191252418848170575
 GameObject:
   m_ObjectHideFlags: 0
