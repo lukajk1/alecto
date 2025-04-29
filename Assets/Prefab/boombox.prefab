@@ -59,7 +59,7 @@ AudioSource:
   MinDistance: 10
   MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -67,23 +67,32 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.2
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -5.0019917
+      outSlope: -5.0019917
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4
+      value: 0.5
+      inSlope: -1.2504979
+      outSlope: -1.2504979
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.11900635
+      inSlope: -0.20007975
+      outSlope: -0.20007975
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -179,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb6c66f2de5dee4c95ccb653e19c24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invertGrav: {fileID: 6177137166548014407}
+  invertGrav: {fileID: 6437799496665780034}
 --- !u!1 &8417011350880508805
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8229474672125837139}
-  - component: {fileID: 6177137166548014407}
+  - component: {fileID: 6437799496665780034}
   - component: {fileID: 4154719444431253459}
   - component: {fileID: 7734789059226899115}
   - component: {fileID: 5954763761906186919}
@@ -209,7 +218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8417011350880508805}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.314, y: -2.92, z: -9.19}
   m_LocalScale: {x: 0.43, y: 0.43, z: 0.43}
   m_ConstrainProportionsScale: 1
@@ -217,7 +226,7 @@ Transform:
   - {fileID: 2929499698550619873}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6177137166548014407
+--- !u!114 &6437799496665780034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,7 +235,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8417011350880508805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24b33c3127acd2e4ea7dc0e74919f7f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 257ef2dcedfe4b34e8f12881bbc8f330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   normalGravity: 1
@@ -234,6 +243,8 @@ MonoBehaviour:
   horizontalGravity: 0
   useBlackHoleAttraction: 0
   customGravityScalar: 0
+  approximateVolumeInCubicMeters: 0.1
+  mass: 10
 --- !u!33 &4154719444431253459
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -316,7 +327,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8417011350880508805}
   serializedVersion: 4
-  m_Mass: 35
+  m_Mass: 16
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

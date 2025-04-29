@@ -11,7 +11,7 @@ public class CustomPhysics : MonoBehaviour
     [SerializeField] private bool horizontalGravity;
     [SerializeField] private bool useBlackHoleAttraction;
     [SerializeField] private float customGravityScalar = 0f;
-    [SerializeField] private float approximateVolumeInCubicMeters = 1f;
+    //[SerializeField] private float approximateVolumeInCubicMeters = 1f;
     [SerializeField] private float mass = 10f;
 
     private float GravityConstant;

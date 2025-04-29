@@ -5,7 +5,7 @@ public class PullPlayerToObject : MonoBehaviour
 {
 
     [SerializeField] private SpringJoint spring;
-    [SerializeField] private LineRenderer lr;
+    //[SerializeField] private LineRenderer lr;
     [SerializeField] private Rigidbody rb;
 
     Rigidbody anchoredRigidBody;
@@ -16,7 +16,7 @@ public class PullPlayerToObject : MonoBehaviour
 
     float extraGravityForce = 19f; // this is used to help the playercontroller stick to the ground better. However it needs to be compensated for.
     //float pullForce = 35f;
-    float lrWidth = 0.3f;
+    //float lrWidth = 0.3f;
     bool hasRigidBody;
 
     bool anchored;
@@ -24,11 +24,11 @@ public class PullPlayerToObject : MonoBehaviour
     {
         anchorViz = FindFirstObjectByType<RaycastAnchorVisualizer>();
 
-        lr.positionCount = 2;
-        lr.useWorldSpace = true;
-        lr.startWidth = lrWidth;
-        lr.endWidth = lrWidth;
-        lr.enabled = false;
+        //lr.positionCount = 2;
+        //lr.useWorldSpace = true;
+        //lr.startWidth = lrWidth;
+        //lr.endWidth = lrWidth;
+        //lr.enabled = false;
     }
 
     void Update()
@@ -91,23 +91,23 @@ public class PullPlayerToObject : MonoBehaviour
 
     void RenderLine()
     {
-        if (anchored)
-        {
-            if (hasRigidBody) 
-            {
-                lr.SetPosition(1, anchoredRigidBody.transform.TransformPoint(localAnchor));
-            }
-            else
-            {
-                lr.SetPosition(1, worldAnchor);
-            }
+        //if (anchored)
+        //{
+        //    if (hasRigidBody) 
+        //    {
+        //        lr.SetPosition(1, anchoredRigidBody.transform.TransformPoint(localAnchor));
+        //    }
+        //    else
+        //    {
+        //        lr.SetPosition(1, worldAnchor);
+        //    }
 
-            lr.SetPosition(0, transform.position + new Vector3(0f, -0.35f, 0f));
-            //lr.enabled = true;
-        }
-        else
-        {
-            lr.enabled = false;
-        }
+        //    lr.SetPosition(0, transform.position + new Vector3(0f, -0.35f, 0f));
+        //    //lr.enabled = true;
+        //}
+        //else
+        //{
+        //    lr.enabled = false;
+        //}
     }
 }

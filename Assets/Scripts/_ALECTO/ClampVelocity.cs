@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[RequireComponent (typeof(Rigidbody))]
 public class ClampVelocity : MonoBehaviour
 {
     float maxMetersPerSecond = 68f;
