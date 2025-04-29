@@ -11,6 +11,8 @@ Shader "Custom/Basic"
 
         Pass
         {
+            Name "Albedo"
+
             HLSLPROGRAM
 
             #pragma vertex vert
@@ -20,27 +22,27 @@ Shader "Custom/Basic"
             
             float4 _Color;
 
-            struct Attributes
+            struct appdata
             {
                 float4 positionOS   : POSITION;      
                 float3 normalOS : NORMAL;
             };
 
-            struct Varyings
+            struct v2f
             {
                 float4 positionHCS  : SV_POSITION;
                 float3 normalWS    : TEXCOORD0;
             };            
 
-            Varyings vert(Attributes IN)
+            v2f vert(appdata IN)
             {
-                Varyings OUT;
+                v2f OUT;
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
                 OUT.normalWS = TransformObjectToWorldNormal(IN.normalOS);
                 return OUT;
             }
             
-            half4 frag(Varyings IN) : SV_Target
+            half4 frag(v2f IN) : SV_Target
             {
                 return half4(_Color);
             }
@@ -49,35 +51,62 @@ Shader "Custom/Basic"
             ENDHLSL
         }
 
+        // Shadow casting pass
         Pass
         {
             Name "ShadowCaster"
             Tags { "LightMode" = "ShadowCaster" }
-
+            
+            ZWrite On
+            ZTest LEqual
+            ColorMask 0
+            Cull Back
+            
             HLSLPROGRAM
-            #pragma vertex vert
-            #pragma fragment fragShadowCaster
-
+            #pragma vertex ShadowPassVertex
+            #pragma fragment ShadowPassFragment
+            
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
+            
+            // Shadow caster specific input
+            float3 _LightDirection;
+            
             struct Attributes
             {
-                float4 positionOS : POSITION;
+                float4 positionOS   : POSITION;
+                float3 normalOS     : NORMAL;
+                float2 texcoord     : TEXCOORD0;
             };
-
+            
             struct Varyings
             {
-                float4 positionCS : SV_POSITION;
+                float4 positionCS   : SV_POSITION;
             };
-
-            Varyings vert(Attributes IN)
+            
+            Varyings ShadowPassVertex(Attributes input)
             {
-                Varyings OUT;
-                OUT.positionCS = TransformObjectToHClip(IN.positionOS.xyz);
-                return OUT;
+                Varyings output;
+                
+                float3 positionWS = TransformObjectToWorld(input.positionOS.xyz);
+                float3 normalWS = TransformObjectToWorldNormal(input.normalOS);
+                
+                // Shadow caster specific - get position in light space and apply bias
+                float4 positionCS = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, _LightDirection));
+                
+                #if UNITY_REVERSED_Z
+                    positionCS.z = min(positionCS.z, UNITY_NEAR_CLIP_VALUE);
+                #else
+                    positionCS.z = max(positionCS.z, UNITY_NEAR_CLIP_VALUE);
+                #endif
+                
+                output.positionCS = positionCS;
+                return output;
             }
-
-            half4 fragShadowCaster(Varyings IN) : SV_Target
+            
+            half4 ShadowPassFragment(Varyings input) : SV_TARGET
             {
                 return 0;
             }

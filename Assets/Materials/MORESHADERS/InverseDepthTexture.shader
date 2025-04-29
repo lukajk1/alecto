@@ -51,7 +51,7 @@ Shader "Custom/InverseDepthTexture"
                 float2 fragCoord = IN.screenPos.xy / IN.screenPos.w; // normalized screen space
                 half depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, fragCoord) * 4;
                 half depth2 = 1 -  (4.6 * depth);
-                return half4(depth2, depth2, depth2, 1.0);  
+                return half4(depth2 / 2, 0, 0, 1.0);  
             }
 
 
