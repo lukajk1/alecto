@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: outline
-  m_Shader: {fileID: 4800000, guid: f6d56e789cfd8fb4c85c79ce1bd98ca4, type: 3}
+  m_Name: DepthTexture
+  m_Shader: {fileID: 4800000, guid: a7fd2666ce70f4247bf95d3fd47c74db, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,9 +24,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats:
-    - _OutlineThickness: 1.67
+    m_Floats: []
     m_Colors:
-    - _Color: {r: 0.120666504, g: 0, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

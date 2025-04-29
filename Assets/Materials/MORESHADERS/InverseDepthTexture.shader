@@ -1,15 +1,14 @@
-Shader "Custom/Transparent1"
+Shader "Custom/InverseDepthTexture"
 {
     Properties
     { 
-        _Alpha ("Alpha", Range(0, 1)) = 0.5   
+        _Color ("Color", Color) = (1, 1, 1, 1)  
     }
 
     SubShader
     {
-        Tags { "RenderType" = "Transparent" "Queue"="Transparent" }
-        Blend SrcAlpha OneMinusSrcAlpha
-        ZWrite Off
+        Tags { "RenderType" = "Opaque" }
+        ZWrite On
 
         Pass
         {
@@ -20,7 +19,10 @@ Shader "Custom/Transparent1"
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"     
             
-            half _Alpha;
+            float4 _Color;
+            
+            TEXTURE2D(_CameraDepthTexture);
+            SAMPLER(sampler_CameraDepthTexture);
 
             struct Attributes
             {
@@ -32,6 +34,7 @@ Shader "Custom/Transparent1"
             {
                 float4 positionHCS  : SV_POSITION;
                 float3 normalWS    : TEXCOORD0;
+                float4 screenPos   : TEXCOORD1;
             };            
 
             Varyings vert(Attributes IN)
@@ -39,15 +42,22 @@ Shader "Custom/Transparent1"
                 Varyings OUT;
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
                 OUT.normalWS = TransformObjectToWorldNormal(IN.normalOS);
+                OUT.screenPos = ComputeScreenPos(OUT.positionHCS);
                 return OUT;
             }
             
             half4 frag(Varyings IN) : SV_Target
-            {
-                half3 normalColor = IN.normalWS * 0.5 + 0.5;
-                return half4(normalColor, _Alpha);
+            {    
+                float2 fragCoord = IN.screenPos.xy / IN.screenPos.w; // normalized screen space
+                half depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, fragCoord) * 4;
+                half depth2 = 1 -  (4.6 * depth);
+                return half4(depth2, depth2, depth2, 1.0);  
             }
+
+
             ENDHLSL
         }
+
+
     }
 }
