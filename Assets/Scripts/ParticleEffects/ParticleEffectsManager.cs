@@ -2,17 +2,23 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine.InputSystem.HID;
+using UnityEngine.UIElements;
 
 public class ParticleEffectsManager : MonoBehaviour
-{
+{   
+    public static ParticleEffectsManager i;
     [SerializeField] private Camera fpCamera;
     [SerializeField] private ParticleSystem bloodSplatter;
+    [SerializeField] private GameObject bulletHitEffect;
     private Queue<ParticleSystem> pool = new Queue<ParticleSystem>();
 
     [SerializeField] private Canvas damageNumberCanvas;
 
     private void Awake()
     {
+        if (i != null) Debug.LogError($"More than one instance of {i} in scene");
+        i = this;
+
         for (int i = 0; i < 6; i++)
         {
             var instance = Instantiate(bloodSplatter, transform);
@@ -57,6 +63,12 @@ public class ParticleEffectsManager : MonoBehaviour
         ps.Play();
 
         StartCoroutine(ReturnToPoolAfterPlay(ps));
+    }
+
+    public void BulletHitStaticObject(Vector3 pos, Vector3 surfaceNormalDir)
+    {
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, surfaceNormalDir) * Quaternion.Euler(90f, 0f, 0f);
+        Instantiate(bulletHitEffect, pos, rotation);
     }
 
     private System.Collections.IEnumerator ReturnToPoolAfterPlay(ParticleSystem ps)

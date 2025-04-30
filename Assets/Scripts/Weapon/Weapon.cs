@@ -117,7 +117,7 @@ public abstract class Weapon
     {
         if (hit.collider.TryGetComponent<EnemyBody>(out var body))
         {
-            OnNormalHit(); 
+            OnNormalHit();
             SFXManager.i.PlaySFXClip(UISFXList.i.enemyBodyHit, Game.i.PlayerTransform.position);
 
             CombatEventBus.BCOnEnemyHit(BaseDamage, false, hit.point);
@@ -127,7 +127,7 @@ public abstract class Weapon
         }
         else if (hit.collider.TryGetComponent<EnemyCritical>(out var enemyCritical))
         {
-            OnCriticalHit(); 
+            OnCriticalHit();
             SFXManager.i.PlaySFXClip(UISFXList.i.enemyCritHit, Game.i.PlayerTransform.position);
 
             int critAdjustedDamage = (int)(BaseDamage * criticalHitModifier);
@@ -137,6 +137,11 @@ public abstract class Weapon
 
             //Debug.Log(enemyCritical.transform.root.GetComponent<EnemyUnit>());
             enemyCritical.MyEnemyUnit.TakeDamage(true, critAdjustedDamage);
+        }
+        else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Walkable")) 
+        { 
+            DecalManager.i.PlaceDecal(DecalManager.Decal.BulletHole, hit.point + hit.normal * 0.05f, hit.normal);
+            //ParticleEffectsManager.i.BulletHitStaticObject(hit.point, hit.normal);
         }
     }
 
