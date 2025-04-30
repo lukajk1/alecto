@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ffd843a0d60074fba080c8915f9a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponFire: {fileID: 8300000, guid: 2ed0f528da56e13429ec06a1a57431b8, type: 3}
+  weaponFire: {fileID: 8300000, guid: ba51e8e99afb6e646bdaf9bf896cf255, type: 3}
   reloadFinished: {fileID: 8300000, guid: 1e6ae0f5b7dbe4b45b00b2d82a7e34d5, type: 3}
   outOfBullets: {fileID: 8300000, guid: 184340ced1c05864bbf8d6590634bdc9, type: 3}
   enemyCritHit: {fileID: 8300000, guid: a19a7e6b7cfa14640b38cf05f7ac5b61, type: 3}

@@ -141,8 +141,22 @@ public abstract class Weapon
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Walkable")) 
         { 
             DecalManager.i.PlaceDecal(DecalManager.Decal.BulletHole, hit.point + hit.normal * 0.05f, hit.normal);
-            //ParticleEffectsManager.i.BulletHitStaticObject(hit.point, hit.normal);
         }
+
+        Explosion explosion = hit.collider.gameObject.GetComponent<Explosion>();
+        if (explosion != null)
+        {
+            explosion.Explode();
+        }
+
+        Rigidbody rb = hit.collider.gameObject.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.AddForceAtPosition(Game.i.PlayerCamera.transform.forward * 80f, hit.point, ForceMode.Impulse);
+            Debug.Log("adding force");
+        }
+
+        ParticleEffectsManager.i.BulletHitStaticObject(hit.point, hit.normal);
     }
 
     protected virtual void OnCriticalHit() { }

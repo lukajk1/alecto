@@ -8,9 +8,9 @@ public class DecalManager : MonoBehaviour
     [SerializeField] GameObject bulletDecal;
     [SerializeField] GameObject explosionDecal;
 
-    private Dictionary<Decal, int> maxPoolSizes = new Dictionary<Decal, int>
+    private Dictionary<Decal, int> poolSizes = new Dictionary<Decal, int>
     {
-        { Decal.BulletHole, 30 },
+        { Decal.BulletHole, 55 },
         { Decal.Explosion, 10 }
     };
 
@@ -21,7 +21,7 @@ public class DecalManager : MonoBehaviour
         if (i != null) Debug.LogError($"More than one instance of {i} in scene");
         i = this;
 
-        foreach (var kvp in maxPoolSizes)
+        foreach (var kvp in poolSizes)
         {
             decalPools[kvp.Key] = new Queue<GameObject>();
         }
@@ -58,7 +58,7 @@ public class DecalManager : MonoBehaviour
     {
         Queue<GameObject> pool = decalPools[type];
 
-        if (pool.Count < maxPoolSizes[type])
+        if (pool.Count < poolSizes[type])
         {
             GameObject newDecal = Instantiate(LookupDecal(type));
             pool.Enqueue(newDecal);

@@ -5,15 +5,16 @@ public class Explosion : MonoBehaviour
     [SerializeField] float explosionForce;
     [SerializeField] float explosionRadius;
     [SerializeField] GameObject explosionDecal;
+    [SerializeField] GameObject explosionParticle;
 
     float sfxMinDist = 8f;
     float sfxMaxDist = 100f;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) Explode();
+        //if (Input.GetKeyDown(KeyCode.T)) Explode();
     }
-    void Explode()
+    public void Explode()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
@@ -34,6 +35,8 @@ public class Explosion : MonoBehaviour
 
         Quaternion rotation = Quaternion.Euler(90f, transform.eulerAngles.y, 0f);
         Instantiate(explosionDecal, transform.position, rotation);
+        Instantiate(explosionParticle, transform.position, rotation);
 
+        Destroy(gameObject);
     }
 }

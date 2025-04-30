@@ -9,7 +9,10 @@ public class ParticleEffectsManager : MonoBehaviour
     public static ParticleEffectsManager i;
     [SerializeField] private Camera fpCamera;
     [SerializeField] private ParticleSystem bloodSplatter;
+    
     [SerializeField] private GameObject bulletHitEffect;
+
+
     private Queue<ParticleSystem> pool = new Queue<ParticleSystem>();
 
     [SerializeField] private Canvas damageNumberCanvas;
@@ -67,8 +70,8 @@ public class ParticleEffectsManager : MonoBehaviour
 
     public void BulletHitStaticObject(Vector3 pos, Vector3 surfaceNormalDir)
     {
-        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, surfaceNormalDir) * Quaternion.Euler(90f, 0f, 0f);
-        Instantiate(bulletHitEffect, pos, rotation);
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, surfaceNormalDir);
+        Instantiate(bulletHitEffect, pos + surfaceNormalDir * 0.08f, rotation);
     }
 
     private System.Collections.IEnumerator ReturnToPoolAfterPlay(ParticleSystem ps)
