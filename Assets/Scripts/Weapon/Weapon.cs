@@ -140,7 +140,6 @@ public abstract class Weapon
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Walkable")) 
         { 
-            DecalManager.i.PlaceDecal(DecalManager.Decal.BulletHole, hit.point + hit.normal * 0.05f, hit.normal);
         }
 
         Explosion explosion = hit.collider.gameObject.GetComponent<Explosion>();
@@ -156,7 +155,9 @@ public abstract class Weapon
             Debug.Log("adding force");
         }
 
+        DecalManager.i.PlaceDecal(DecalManager.Decal.BulletHole, hit.point + hit.normal * 0.05f, hit.normal, hit.collider.gameObject.transform);
         ParticleEffectsManager.i.BulletHitStaticObject(hit.point, hit.normal);
+        BulletTrail.i.Shoot(hit.point);
     }
 
     protected virtual void OnCriticalHit() { }

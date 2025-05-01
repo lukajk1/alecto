@@ -6,16 +6,20 @@ public class Explosion : MonoBehaviour
     [SerializeField] float explosionRadius;
     [SerializeField] GameObject explosionDecal;
     [SerializeField] GameObject explosionParticle;
+    [SerializeField] Light pointLight;
 
     float sfxMinDist = 8f;
     float sfxMaxDist = 100f;
 
-    private void Update()
+
+    private void Start()
     {
-        //if (Input.GetKeyDown(KeyCode.T)) Explode();
+        pointLight.enabled = false;
     }
     public void Explode()
     {
+        pointLight.enabled = true;
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
         foreach (var col in colliders)

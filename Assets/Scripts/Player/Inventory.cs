@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
 
         ActiveSlot = 0;
 
-        inv[0] = new Barehand();
+        inv[0] = new Rifle();
         inv[1] = new ChainDaggers();
     }
 
@@ -41,7 +41,7 @@ public class Inventory : MonoBehaviour
     }
     public void SetWeapon(int slot, Weapon weapon)
     {
-        if (!(inv[slot] is Barehand))
+        if (!(inv[slot] is Rifle))
         {
             CombatEventBus.BCOnWeaponDropped(inv[slot]);
         }
@@ -72,7 +72,7 @@ public class Inventory : MonoBehaviour
 
     public void AddWeapon(Weapon weapon) // for equipping picked up weapons
     {
-        if (inv[0] is Barehand)
+        if (inv[0] is Rifle)
         {
             if (inv[1] == null)
             {

@@ -10,7 +10,7 @@ public class DecalManager : MonoBehaviour
 
     private Dictionary<Decal, int> poolSizes = new Dictionary<Decal, int>
     {
-        { Decal.BulletHole, 55 },
+        { Decal.BulletHole, 500 },
         { Decal.Explosion, 10 }
     };
 
@@ -33,7 +33,7 @@ public class DecalManager : MonoBehaviour
         BulletHole
     }
 
-    public void PlaceDecal(Decal type, Vector3 position, Vector3 normalOrientation)
+    public void PlaceDecal(Decal type, Vector3 position, Vector3 normalOrientation, Transform hitTransform)
     {
         Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normalOrientation)
                               * Quaternion.Euler(90f, 0f, 0f)
@@ -41,7 +41,9 @@ public class DecalManager : MonoBehaviour
 
         GameObject decal = GetPooledDecal(type);
         decal.transform.SetPositionAndRotation(position, rotation);
+        decal.transform.parent = hitTransform;
         decal.SetActive(true);
+
     }
 
     GameObject LookupDecal(Decal type)

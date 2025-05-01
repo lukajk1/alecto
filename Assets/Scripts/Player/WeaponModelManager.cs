@@ -35,7 +35,7 @@ public class WeaponModelManager : MonoBehaviour
         }
 
         if (currentWeapon is BloodSiphon) model = siphon;
-        else if (currentWeapon is Barehand) model = barehand;
+        else if (currentWeapon is Rifle) model = barehand;
         else if (currentWeapon is Spear) model = spear;
         else if (currentWeapon is ChainDaggers) model = dagger;
         else model = barehand; // just here to prevent use of unassigned field

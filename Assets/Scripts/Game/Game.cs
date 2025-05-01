@@ -117,6 +117,7 @@ public class Game : MonoBehaviour
     public PlayerUnit PlayerUnitInstance;
     public CapsuleCollider PlayerBodyCollider;
     public SphereCollider PlayerHeadCollider;
+    public Transform PlayerBulletOrigin;
 
     public static Action<bool> PauseUpdated;
     public static Action ScoreUpdated;

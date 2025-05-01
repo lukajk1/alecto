@@ -15,4 +15,5 @@ public class PlayerSFXList : MonoBehaviour
     [SerializeField] public AudioClip hurt;
     [SerializeField] public AudioClip footstep;
     [SerializeField] public AudioClip weaponBreak;
+    [SerializeField] public AudioClip casingBounce;
 }

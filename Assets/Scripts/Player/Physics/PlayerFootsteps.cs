@@ -5,7 +5,7 @@ public class PlayerFootsteps : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     private PlayerLookAndMove playerLookAndMove;
 
-    float stepDistance = 180f; // units in between footsteps
+    float stepDistance = 220f; // units in between footsteps
     float distanceMoved;
     bool isMoving;
 
@@ -29,7 +29,7 @@ public class PlayerFootsteps : MonoBehaviour
             distanceMoved += Vector3.Distance(transform.position, lastFootstepPos);
             if (distanceMoved >= stepDistance)
             {
-                SFXManager.i.PlaySFXClip(PlayerSFXList.i.footstep, transform.position);
+                SFXManager.i.PlaySFXClip(PlayerSFXList.i.footstep, transform.position, false);
 
                 lastFootstepPos = transform.position;
                 distanceMoved = 0;

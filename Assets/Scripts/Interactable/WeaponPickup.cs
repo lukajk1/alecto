@@ -23,7 +23,7 @@ public class WeaponPickup : Interactable
             switch (weaponId)
             {
                 case 0:
-                    weapon = new Barehand();
+                    weapon = new Rifle();
                     break;
                 case 1:
                     weapon = new BloodSiphon();
@@ -35,7 +35,7 @@ public class WeaponPickup : Interactable
                     weapon = new Spear();
                     break;
                 default:
-                    weapon = new Barehand();
+                    weapon = new Rifle();
                     break;
             }
         }

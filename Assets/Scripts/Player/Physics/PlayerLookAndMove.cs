@@ -110,24 +110,6 @@ public class PlayerLookAndMove : MonoBehaviour
         }
     }
 
-    private bool _isSlowfall;
-    private bool IsSlowfall
-    {
-        get => _isSlowfall;
-        set
-        {
-            if (_isSlowfall != value)
-            {
-                _isSlowfall = value;
-
-                if (value)
-                {
-                    SFXManager.i.PlaySFXClip(PlayerSFXList.i.slowfall, transform.position);
-                }
-            }
-        }
-    }
-
     private Game game;
     [SerializeField] private PlayerUnit playerUnit;
 
@@ -143,7 +125,6 @@ public class PlayerLookAndMove : MonoBehaviour
 
     private Vector3 movementVector;
     private PlayerWallclimb playerWallClimb;
-    private bool isFalling;
 
     private Timer timer;
     private void Awake()
@@ -198,21 +179,6 @@ public class PlayerLookAndMove : MonoBehaviour
         rb.AddForce(Vector3.down * extraGravityForce, ForceMode.Force); // stick to ground better with a constant downwards force added
         rb.AddForce(Vector3.down * Game.GravityConstant * gravityMultiplier, ForceMode.Acceleration); // stick to ground better with a constant downwards force added
 
-        if (rb.linearVelocity.y < -0.1f && !IsGrounded)
-        {
-            isFalling = true;
-        }
-        else isFalling = false;
-
-
-        if (Input.GetKey(KeyCode.Space) && isFalling && !playerWallClimb.IsWallClimbing) // slow fall
-        {
-            IsSlowfall = true;
-            rb.AddForce(Vector3.up * 28f, ForceMode.Force);
-            //Debug.Log("should be slow falling");
-        }
-
-        if (IsSlowfall && !Input.GetKey(KeyCode.Space)) IsSlowfall = false;
 
         if (IsGrounded)
         {

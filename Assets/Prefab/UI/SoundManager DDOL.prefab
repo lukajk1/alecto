@@ -250,13 +250,13 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1452404498980476775, guid: 56675e803a3fb0b4a9abef8dad5d3328, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c6f298124925438499da86dc24a9b478, type: 3}
+  m_Resource: {fileID: 8300000, guid: c6f298124925438499da86dc24a9b478, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.487
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -384,8 +384,9 @@ MonoBehaviour:
   walljump: {fileID: 8300000, guid: 927d0a7c6f4bd6a4a8c494333e62e78f, type: 3}
   slowfall: {fileID: 8300000, guid: 271dd22b9beaab646b8bec24a4fdf7a4, type: 3}
   jumpTakeoff: {fileID: 8300000, guid: 2255db55192a6164e9ef01f180764309, type: 3}
-  jumpLanding: {fileID: 8300000, guid: 6ca7a5346e1502742bf62eed08486eca, type: 3}
+  jumpLanding: {fileID: 8300000, guid: d46e1ab30f5fb60438d48b1c7a1dcd66, type: 3}
   slide: {fileID: 8300000, guid: 07d82086acee95c4794fe0fcf1d882c7, type: 3}
   hurt: {fileID: 8300000, guid: adfdb9fd3774d3e46b61afe04bee13bd, type: 3}
-  footstep: {fileID: 8300000, guid: 639913054c9fc044a9e0f36abff4f7d3, type: 3}
+  footstep: {fileID: 8300000, guid: fd73f0b70f73a11438ab7481e366d988, type: 3}
   weaponBreak: {fileID: 8300000, guid: 06a54ace2d216284e945a159da2cb5dd, type: 3}
+  casingBounce: {fileID: 8300000, guid: b5836598f6701ee4fb77004d273ecd81, type: 3}
