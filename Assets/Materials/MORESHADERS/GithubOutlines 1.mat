@@ -27,8 +27,11 @@ Material:
     m_Floats:
     - _DepthOffset: 0.01
     - _PrecalculateNormals: 0
-    - _Thickness: 0.052
+    - _RainbowOutline: 0
+    - _ScrollSpeed: 1
+    - _Thickness: 0.01
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

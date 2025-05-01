@@ -152,12 +152,12 @@ public abstract class Weapon
         if (rb != null)
         {
             rb.AddForceAtPosition(Game.i.PlayerCamera.transform.forward * 80f, hit.point, ForceMode.Impulse);
-            Debug.Log("adding force");
+            //Debug.Log("adding force");
         }
 
         DecalManager.i.PlaceDecal(DecalManager.Decal.BulletHole, hit.point + hit.normal * 0.05f, hit.normal, hit.collider.gameObject.transform);
         ParticleEffectsManager.i.BulletHitStaticObject(hit.point, hit.normal);
-        BulletTrail.i.Shoot(hit.point);
+        TracerManager.i.FireTracer(hit.point);
     }
 
     protected virtual void OnCriticalHit() { }

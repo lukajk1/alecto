@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
+    [SerializeField] Color hudColor;
     [SerializeField] private TextMeshProUGUI slot0Gun;
     [SerializeField] private TextMeshProUGUI slot1Gun;
     [SerializeField] private TextMeshProUGUI slot0Number;
@@ -36,6 +37,7 @@ public class HUDManager : MonoBehaviour
     {
         UpdateHealth();
         OnInventoryUpdated();
+        FindFirstObjectByType<FlavorHUD>().Initialize(hudColor);
     }
     private void OnPlayerHit(int damage, bool isCrit)
     {

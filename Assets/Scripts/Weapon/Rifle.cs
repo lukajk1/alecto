@@ -11,13 +11,17 @@ public class Rifle : Weapon
     public override float LifestealRatio => 0.025f;
     public override float Range => 999f;
 
-    public override void Fire(Vector3 firingOrigin, Vector3 forwardFacingVector)
+    public override void Fire(Vector3 firingOrigin, Vector3 forward)
     {
         if (base.TryFire())
         {
-            if (Physics.Raycast(firingOrigin, forwardFacingVector, out hit, Range))
+            if (Physics.Raycast(firingOrigin, forward, out hit, Range))
             {
                 ProcessHit(hit);
+            }
+            else
+            {
+                TracerManager.i.FireTracer(forward * 99f);
             }
         }
     }

@@ -1,8 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Drawing;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.UIElements;
 
 public class ParticleEffectsManager : MonoBehaviour
 {   
@@ -11,6 +8,7 @@ public class ParticleEffectsManager : MonoBehaviour
     [SerializeField] private ParticleSystem bloodSplatter;
     
     [SerializeField] private GameObject bulletHitEffect;
+    [SerializeField] private GameObject particleBulletHitSmoke;
 
 
     private Queue<ParticleSystem> pool = new Queue<ParticleSystem>();
@@ -70,8 +68,11 @@ public class ParticleEffectsManager : MonoBehaviour
 
     public void BulletHitStaticObject(Vector3 pos, Vector3 surfaceNormalDir)
     {
-        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, surfaceNormalDir);
+        //Quaternion rotation = Quaternion.FromToRotation(Vector3.up, surfaceNormalDir);
+        Quaternion rotation = Quaternion.LookRotation(surfaceNormalDir);
+
         Instantiate(bulletHitEffect, pos + surfaceNormalDir * 0.08f, rotation);
+        Instantiate(particleBulletHitSmoke, pos + surfaceNormalDir * 0.08f, rotation);
     }
 
     private System.Collections.IEnumerator ReturnToPoolAfterPlay(ParticleSystem ps)

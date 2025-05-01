@@ -384,7 +384,7 @@ MonoBehaviour:
   walljump: {fileID: 8300000, guid: 927d0a7c6f4bd6a4a8c494333e62e78f, type: 3}
   slowfall: {fileID: 8300000, guid: 271dd22b9beaab646b8bec24a4fdf7a4, type: 3}
   jumpTakeoff: {fileID: 8300000, guid: 2255db55192a6164e9ef01f180764309, type: 3}
-  jumpLanding: {fileID: 8300000, guid: d46e1ab30f5fb60438d48b1c7a1dcd66, type: 3}
+  jumpLanding: {fileID: 8300000, guid: fd73f0b70f73a11438ab7481e366d988, type: 3}
   slide: {fileID: 8300000, guid: 07d82086acee95c4794fe0fcf1d882c7, type: 3}
   hurt: {fileID: 8300000, guid: adfdb9fd3774d3e46b61afe04bee13bd, type: 3}
   footstep: {fileID: 8300000, guid: fd73f0b70f73a11438ab7481e366d988, type: 3}

@@ -24,7 +24,7 @@ public class SpawnBulletCasings : MonoBehaviour
 
         Rigidbody rb = instance.GetComponent<Rigidbody>();
 
-        rb.AddForce((Vector3.up + right) * Random.Range(4f, 7f), ForceMode.Impulse);
+        rb.AddForce((Vector3.up + right) * Random.Range(5.5f, 8.5f), ForceMode.Impulse);
         rb.AddTorque(right * Random.Range(-10f, 10f), ForceMode.Impulse);
         
     }

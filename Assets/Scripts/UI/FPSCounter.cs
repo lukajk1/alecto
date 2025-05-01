@@ -17,7 +17,7 @@ public class FPSCounter : MonoBehaviour
     {
         float currentFPS = 1f / Time.unscaledDeltaTime;
         AddToBuffer(currentFPS);
-        fpsCounter.text = GetAverageFPS().ToString("F1");
+        fpsCounter.text = "framerate{"+GetAverageFPS().ToString("F2")+"}";
     }
 
     void AddToBuffer(float newFPS)
