@@ -15,7 +15,7 @@ public class SpawnDroppedWeapon : MonoBehaviour
         CombatEventBus.OnWeaponDropped -= CreateDrop;
     }
 
-    public void CreateDrop(Weapon droppedWeapon)
+    public void CreateDrop(Gun droppedWeapon)
     {
         //// let's just check if it's actually this that's causing the freeze
         ////Debug.Log(droppedWeapon is Barehand);
@@ -31,7 +31,7 @@ public class SpawnDroppedWeapon : MonoBehaviour
         ////Debug.Log($"player pos: {Game.I.PlayerTransform.position}");
     }    
     
-    public void CreateDrop(Weapon droppedWeapon, Vector3 pos)
+    public void CreateDrop(Gun droppedWeapon, Vector3 pos)
     {
         //// let's just check if it's actually this that's causing the freeze
         //if (droppedWeapon is Barehand || droppedWeapon == null) return;
@@ -42,13 +42,13 @@ public class SpawnDroppedWeapon : MonoBehaviour
         //weaponDrop.GetComponentInChildren<WeaponPickup>().SetWeapon(droppedWeapon);
     }
 
-    GameObject DecodeWeapon(Weapon weapon)
+    GameObject DecodeWeapon(Gun weapon)
     {
         switch (weapon)
         {
             case BloodSiphon:
                 return siphonDrop;
-            case ChainDaggers:
+            case DeagleShotgun:
                 return daggerDrop;
             case Spear:
                 return sniperDrop;

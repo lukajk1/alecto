@@ -26,6 +26,8 @@ public class ParticleEffectsManager : MonoBehaviour
             instance.gameObject.SetActive(false);
             pool.Enqueue(instance);
         }
+
+
     }
 
     private void OnEnable()

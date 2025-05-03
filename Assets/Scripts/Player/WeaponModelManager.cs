@@ -8,7 +8,7 @@ public class WeaponModelManager : MonoBehaviour
     [SerializeField] private GameObject barehand;
     [SerializeField] private GameObject siphon;
     private List<GameObject> weapons;
-    private Weapon currentWeapon; void Awake()
+    private Gun currentWeapon; void Awake()
     {
         weapons = new List<GameObject> { dagger, spear, barehand, siphon };
         foreach (var weapon in weapons)
@@ -35,9 +35,9 @@ public class WeaponModelManager : MonoBehaviour
         }
 
         if (currentWeapon is BloodSiphon) model = siphon;
-        else if (currentWeapon is Rifle) model = barehand;
+        else if (currentWeapon is Humboldt) model = barehand;
         else if (currentWeapon is Spear) model = spear;
-        else if (currentWeapon is ChainDaggers) model = dagger;
+        else if (currentWeapon is DeagleShotgun) model = dagger;
         else model = barehand; // just here to prevent use of unassigned field
 
         model.SetActive(true);

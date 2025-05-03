@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Spear : Weapon
+public class Spear : Gun
 {
     public override string Name => "Spear";
     public override int ClipSize => 7;
@@ -10,6 +10,7 @@ public class Spear : Weapon
     public override float ReadySpeed => 0.7f;
     public override float LifestealRatio => 0.06f;
     public override float Range => 999f;
+    public override float MuzzleVelocity => 600f;
     protected SpearADS spearADS;
     public Spear()
     {

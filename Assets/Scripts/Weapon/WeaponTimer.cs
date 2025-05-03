@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class WeaponTimer : MonoBehaviour
 {
-    private Weapon weapon;
+    private Gun weapon;
     private Coroutine fireCooldown;
     private Coroutine reloadTimer;
-    public void Setup(Weapon weapon)
+    public void Setup(Gun weapon)
     {
         this.weapon = weapon;
     }

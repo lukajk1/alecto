@@ -5,7 +5,7 @@ public class PlayerWeaponManager : MonoBehaviour
 {
     [SerializeField] private Camera fpCamera;
     [SerializeField] private PlayerInput playerInput;
-    private Weapon weapon;
+    private Gun weapon;
     private InputAction attackAction;
     private void OnEnable()
     {

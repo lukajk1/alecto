@@ -3,7 +3,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory I;
-    private Weapon[] inv = new Weapon[2];
+    private Gun[] inv = new Gun[2];
     public int ActiveSlot {  get; private set; }
     private void Awake()
     {
@@ -12,8 +12,8 @@ public class Inventory : MonoBehaviour
 
         ActiveSlot = 0;
 
-        inv[0] = new Rifle();
-        inv[1] = new ChainDaggers();
+        inv[0] = new Humboldt();
+        inv[1] = new DeagleShotgun();
     }
 
     private void OnEnable()
@@ -39,9 +39,9 @@ public class Inventory : MonoBehaviour
             CombatEventBus.BCOnInventoryUpdated();
         }
     }
-    public void SetWeapon(int slot, Weapon weapon)
+    public void SetWeapon(int slot, Gun weapon)
     {
-        if (!(inv[slot] is Rifle))
+        if (!(inv[slot] is Humboldt))
         {
             CombatEventBus.BCOnWeaponDropped(inv[slot]);
         }
@@ -70,9 +70,9 @@ public class Inventory : MonoBehaviour
         CombatEventBus.BCOnInventoryUpdated();
     }
 
-    public void AddWeapon(Weapon weapon) // for equipping picked up weapons
+    public void AddWeapon(Gun weapon) // for equipping picked up weapons
     {
-        if (inv[0] is Rifle)
+        if (inv[0] is Humboldt)
         {
             if (inv[1] == null)
             {
@@ -94,12 +94,12 @@ public class Inventory : MonoBehaviour
         if (inv[1 -  ActiveSlot] != null) SetActiveSlot(1 - ActiveSlot);
     }
 
-    public Weapon GetWeapon(int slot) 
+    public Gun GetWeapon(int slot) 
     { 
         return inv[slot];
     }
 
-    public Weapon GetActiveWeapon()
+    public Gun GetActiveWeapon()
     {
         return inv[ActiveSlot];
     }

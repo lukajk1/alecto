@@ -19,7 +19,7 @@ public class EnemyDrops : MonoBehaviour
             // determine which weapon to drop
             chance = Random.Range(0f, 1.0f);
 
-            Weapon[] weapons = { new BloodSiphon(), new Spear(), new ChainDaggers() };
+            Gun[] weapons = { new BloodSiphon(), new Spear(), new DeagleShotgun() };
             int index = Mathf.FloorToInt(chance * weapons.Length);
             index = Mathf.Clamp(index, 0, weapons.Length - 1); // safety
 

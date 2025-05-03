@@ -125,8 +125,8 @@ public class Game : MonoBehaviour
     public static Game i { get; private set; }
 
     public static string mainMenuSceneName = "MainMenu";
-    public static string mainGameSceneName = "Game";
-    public static string tutorialSceneName = "Tutorial";
+    public static string mainGameSceneName = "DemoLevel";
+    public static string tutorialSceneName = "Testbed";
 
     private void Awake()
     {

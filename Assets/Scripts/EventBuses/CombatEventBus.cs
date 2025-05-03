@@ -3,16 +3,16 @@ using UnityEngine;
 
 public static class CombatEventBus
 {
-    public static event Action<Weapon> OnWeaponDropped;
-    public static void BCOnWeaponDropped(Weapon droppedWeapon) => OnWeaponDropped?.Invoke(droppedWeapon);
+    public static event Action<Gun> OnWeaponDropped;
+    public static void BCOnWeaponDropped(Gun droppedWeapon) => OnWeaponDropped?.Invoke(droppedWeapon);
 
     public static event Action OnInventoryUpdated;
 
     public static void BCOnInventoryUpdated() => OnInventoryUpdated?.Invoke();
 
-    public static event Action<Weapon> OnWeaponFired;
+    public static event Action<Gun> OnWeaponFired;
 
-    public static void BCOnWeaponFired(Weapon weapon) => OnWeaponFired?.Invoke(weapon);
+    public static void BCOnWeaponFired(Gun weapon) => OnWeaponFired?.Invoke(weapon);
 
     public static event Action OnAmmoCountsModified;
     public static void BCOnAmmoCountsModified() => OnAmmoCountsModified?.Invoke();

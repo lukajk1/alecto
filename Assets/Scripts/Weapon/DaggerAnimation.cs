@@ -4,7 +4,7 @@ public class Dagger : MonoBehaviour
 {
     [SerializeField] private Material dissolveMat;
 
-    public ChainDaggers dagger;
+    public DeagleShotgun dagger;
 
 
 

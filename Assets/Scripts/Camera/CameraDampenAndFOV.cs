@@ -12,7 +12,7 @@ public class CameraDampenAndFOV : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private WeaponCameraSyncFov weaponCam;
 
-    private float verticalOffset = 0f; // not needed any more since target transform is now tied to a head, but here in case it's useful in the future
+    private float verticalOffset = 1.25f;
     private void Start()
     {
         //weaponCam.SyncFOV(cam.fieldOfView);

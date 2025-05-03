@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BloodSiphon : Weapon
+public class BloodSiphon : Gun
 {
     public override string Name => "Blood Siphon";
     public override int ClipSize => 99;
@@ -12,6 +12,7 @@ public class BloodSiphon : Weapon
     public override float Range => 17f;
     public float AmmoRegenRate => 0.02f;
     public float DelayAfterFiringToStartRegen => 0.2f;
+    public override float MuzzleVelocity => 600f;
 
     private BloodSiphonTimer bloodSiphonTimer;
 

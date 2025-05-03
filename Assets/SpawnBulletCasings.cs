@@ -4,7 +4,7 @@ using UnityEngine;
 public class SpawnBulletCasings : MonoBehaviour
 {
     public GameObject casing;
-
+    public Transform casingOrigin;
     private void OnEnable()
     {
         CombatEventBus.OnWeaponFired += Spawn;
@@ -14,13 +14,13 @@ public class SpawnBulletCasings : MonoBehaviour
         CombatEventBus.OnWeaponFired -= Spawn;
     }
 
-    void Spawn(Weapon weapon)
+    void Spawn(Gun weapon)
     {
         Transform cam = Camera.main.transform;
         Vector3 right = cam.right;
 
         Quaternion rotation = cam.rotation * Quaternion.Euler(90f, 0f, 0f);
-        GameObject instance = Instantiate(casing, Game.i.PlayerBulletOrigin.position + cam.right * 0.4f, rotation);
+        GameObject instance = Instantiate(casing, casingOrigin.position, rotation);
 
         Rigidbody rb = instance.GetComponent<Rigidbody>();
 

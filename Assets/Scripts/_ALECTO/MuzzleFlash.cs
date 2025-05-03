@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Light))]
+[RequireComponent(typeof(MeshRenderer))]
 public class MuzzleFlash : MonoBehaviour
 {
     public GameObject muzzleFlash;
@@ -24,9 +25,10 @@ public class MuzzleFlash : MonoBehaviour
     {
         pointLight = GetComponent<Light>();
         pointLight.enabled = false;
+        GetComponent<MeshRenderer>().enabled = false;   
     }
 
-    void Fire(Weapon weapon)
+    void Fire(Gun weapon)
     {
         Instantiate(muzzleFlash, transform.position, Quaternion.identity, transform);
 

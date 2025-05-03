@@ -53,7 +53,7 @@ public class RunStatsManager : MonoBehaviour
         Game.Score += enemyUnit.ScoreWeight;
     }
 
-    private void OnWeaponFired(Weapon weapon)
+    private void OnWeaponFired(Gun weapon)
     {
         shotsFired++;
     }

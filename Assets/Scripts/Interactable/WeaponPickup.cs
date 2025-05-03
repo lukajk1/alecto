@@ -3,14 +3,14 @@ using UnityEngine;
 public class WeaponPickup : Interactable
 {
     [SerializeField] private int weaponId; // only used for generating a new weapon
-    public Weapon weapon;
+    public Gun weapon;
     private bool generateNewWeapon = true;
     protected override void Awake()
     {
         base.Awake();
     }
 
-    public void SetWeapon(Weapon weapon)
+    public void SetWeapon(Gun weapon)
     {
         generateNewWeapon = false;
         this.weapon = weapon;
@@ -23,19 +23,19 @@ public class WeaponPickup : Interactable
             switch (weaponId)
             {
                 case 0:
-                    weapon = new Rifle();
+                    weapon = new Humboldt();
                     break;
                 case 1:
                     weapon = new BloodSiphon();
                     break;
                 case 2:
-                    weapon = new ChainDaggers();
+                    weapon = new DeagleShotgun();
                     break;
                 case 3:
                     weapon = new Spear();
                     break;
                 default:
-                    weapon = new Rifle();
+                    weapon = new Humboldt();
                     break;
             }
         }

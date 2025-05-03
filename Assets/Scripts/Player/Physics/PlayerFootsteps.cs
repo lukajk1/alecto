@@ -35,5 +35,9 @@ public class PlayerFootsteps : MonoBehaviour
                 distanceMoved = 0;
             }
         }
+
+        if (!playerLookAndMove.IsGrounded)
+            distanceMoved = 0;
+
     }
 }

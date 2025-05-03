@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Weapon
+public abstract class Gun
 {
     private float criticalHitModifier = 3.0f;
     public abstract string Name { get; }
@@ -39,13 +39,14 @@ public abstract class Weapon
     public abstract float ReadySpeed { get; } // how fast a gun can be fired after being switched to
     public abstract float LifestealRatio { get; }
     public abstract float Range { get; }
+    public abstract float MuzzleVelocity { get; }
     public bool IsBroken { get; protected set; }
 
     public float[,] DamageFalloffTable;
     protected WeaponTimer weaponTimer;
     protected RaycastHit hit;
 
-    public Weapon()
+    public Gun()
     {
         CurrentAmmo = ClipSize;
         TotalAmmo = DecideInitialTotalAmmo();

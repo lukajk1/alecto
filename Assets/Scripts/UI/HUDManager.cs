@@ -14,7 +14,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI txtHealth;
     [SerializeField] private Slider healthbar;
     [SerializeField] private Slider wallClimbStamina;
-    private Weapon activeWeapon;
+    private Gun activeWeapon;
 
     private void OnEnable()
     {
@@ -58,7 +58,7 @@ public class HUDManager : MonoBehaviour
 
         slot0Gun.text = Inventory.I.GetWeapon(0).Name; // don't need to check if this is null because there will always be a base weapon equipped
 
-        Weapon one = Inventory.I.GetWeapon(1);
+        Gun one = Inventory.I.GetWeapon(1);
 
         if (one != null)
         {

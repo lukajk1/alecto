@@ -6,8 +6,7 @@ using UnityEngine;
 public class Tracer : MonoBehaviour
 {
     TrailRenderer trail;
-    //Coroutine shooting;
-    float speed = 400f;
+    float speed = 600f;
 
     void Start()
     {
