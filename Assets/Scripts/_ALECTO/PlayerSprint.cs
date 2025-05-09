@@ -4,7 +4,9 @@ using UnityEngine;
 public class PlayerSprint : MonoBehaviour
 {
     PlayerLookAndMove lookAndMove;
-    float bonusSpeed = 4.5f;
+    Camera mainCam;
+    float bonusSpeed = 3.9f;
+    float bonusFOV = 4.5f;
     bool _isSprinting;
     bool IsSprinting
     {
@@ -15,9 +17,16 @@ public class PlayerSprint : MonoBehaviour
             {
                 _isSprinting = value;
                 if (value)
+                {
                     lookAndMove.MoveSpeed += bonusSpeed;
-                else 
+                    mainCam.fieldOfView += bonusFOV;
+                }
+                else
+                {
                     lookAndMove.MoveSpeed -= bonusSpeed;
+                    mainCam.fieldOfView -= bonusFOV;
+                }
+
             }
         }
     }
@@ -25,11 +34,12 @@ public class PlayerSprint : MonoBehaviour
     void Start()
     {
         lookAndMove = GetComponent<PlayerLookAndMove>();
+        mainCam = Camera.main;
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && lookAndMove.IsGrounded)
+        if (Input.GetKey(KeyCode.LeftShift))
             IsSprinting = true;
         else
             IsSprinting = false;

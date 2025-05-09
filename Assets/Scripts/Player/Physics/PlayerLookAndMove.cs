@@ -5,13 +5,13 @@ using UnityEngine.InputSystem;
 public class PlayerLookAndMove : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private Camera mainCamera; 
 
     [SerializeField] private InputSystem_Actions actions;
 
     [SerializeField] private Rigidbody rb; 
     [SerializeField] private LayerMask groundLayer;
 
+    Camera cam;
     private Transform lastJumpedFrom;
 
     private float _moveSpeed;
@@ -141,7 +141,6 @@ public class PlayerLookAndMove : MonoBehaviour
         playerScale = player.transform.localScale;
         move = actions.Player.Move;
     }
-
     private void OnEnable()
     {
         actions.Player.Enable();
@@ -162,6 +161,7 @@ public class PlayerLookAndMove : MonoBehaviour
     private void Start()
     {
         game = Game.i;
+        cam = Camera.main;
         playerWallClimb = FindFirstObjectByType<PlayerWallclimb>();
         timer = new GameObject($"LookAndMove Timer").AddComponent<Timer>();
         lastJumpedFrom = new GameObject("lastJumpedFrom").transform;
@@ -271,7 +271,8 @@ public class PlayerLookAndMove : MonoBehaviour
 
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); // prevent looking above/below 90
 
-        mainCamera.transform.localEulerAngles = new Vector3(xRotation, yRotation, 0);
+        //cam.transform.localEulerAngles = new Vector3(xRotation, yRotation, 0);
+        MainCamBuffer.i.RotationBuffer += new Vector3(xRotation, yRotation, 0);
         transform.localEulerAngles = new Vector3(xRotation, yRotation, 0);
     }
     private Vector3 DetermineMovementVector()
