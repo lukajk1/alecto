@@ -1,9 +1,11 @@
 using UnityEngine;
 
-public class MainCamBuffer : MonoBehaviour
+public class MainCamBuffers : MonoBehaviour
 {
-    public static MainCamBuffer i;
+    public static MainCamBuffers i;
     private Camera cam;
+
+    // the buffers store the exact value the property of the camera should be set to that frame
     private Vector3 _rotationBuffer;
     public Vector3 RotationBuffer
     {
@@ -13,6 +15,18 @@ public class MainCamBuffer : MonoBehaviour
             if (value != _rotationBuffer)
             {
                 _rotationBuffer = value;
+            }
+        }
+    }    
+    private float _fovBuffer;
+    public float FOVBuffer
+    {
+        get => _fovBuffer;
+        set
+        {
+            if (value != _fovBuffer)
+            {
+                _fovBuffer = value;
             }
         }
     }
@@ -33,6 +47,5 @@ public class MainCamBuffer : MonoBehaviour
         RotationBuffer = Vector3.zero;
 
         // fov
-
     }
 }

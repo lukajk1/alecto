@@ -5,7 +5,7 @@ public class PlayerSprint : MonoBehaviour
 {
     PlayerLookAndMove lookAndMove;
     Camera mainCam;
-    float bonusSpeed = 3.9f;
+    float bonusSpeed = 3.0f;
     float bonusFOV = 4.5f;
     bool _isSprinting;
     bool IsSprinting

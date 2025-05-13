@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Gun
 {
-    private float criticalHitModifier = 3.0f;
+    //private float criticalHitModifier = 3.0f;
     public abstract string Name { get; }
     public abstract int ClipSize { get; }
     protected int totalAmmo;
@@ -116,28 +116,15 @@ public abstract class Gun
 
     protected void ProcessHit(RaycastHit hit)
     {
-        if (hit.collider.TryGetComponent<EnemyBody>(out var body))
+        if (hit.collider.TryGetComponent<AgentLimb>(out var body))
         {
             OnNormalHit();
             SFXManager.i.PlaySFXClip(UISFXList.i.enemyBodyHit, Game.i.PlayerTransform.position);
 
             CombatEventBus.BCOnEnemyHit(BaseDamage, false, hit.point);
 
-            body.MyEnemyUnit.TakeDamage(false, BaseDamage);
+            body.Hit(BaseDamage);
             Game.i.PlayerUnitInstance.Lifesteal(BaseDamage);
-        }
-        else if (hit.collider.TryGetComponent<EnemyCritical>(out var enemyCritical))
-        {
-            OnCriticalHit();
-            SFXManager.i.PlaySFXClip(UISFXList.i.enemyCritHit, Game.i.PlayerTransform.position);
-
-            int critAdjustedDamage = (int)(BaseDamage * criticalHitModifier);
-            Game.i.PlayerUnitInstance.Lifesteal(critAdjustedDamage);
-
-            CombatEventBus.BCOnEnemyHit(critAdjustedDamage, true, hit.point);
-
-            //Debug.Log(enemyCritical.transform.root.GetComponent<EnemyUnit>());
-            enemyCritical.MyEnemyUnit.TakeDamage(true, critAdjustedDamage);
         }
         else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Walkable")) 
         { 

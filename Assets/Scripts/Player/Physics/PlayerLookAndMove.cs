@@ -272,7 +272,7 @@ public class PlayerLookAndMove : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); // prevent looking above/below 90
 
         //cam.transform.localEulerAngles = new Vector3(xRotation, yRotation, 0);
-        MainCamBuffer.i.RotationBuffer += new Vector3(xRotation, yRotation, 0);
+        MainCamBuffers.i.RotationBuffer += new Vector3(xRotation, yRotation, 0);
         transform.localEulerAngles = new Vector3(xRotation, yRotation, 0);
     }
     private Vector3 DetermineMovementVector()

@@ -28,7 +28,11 @@ public class Explosion : MonoBehaviour
             if (rb != null)
             {
                 Vector3 forceDir = (rb.position - transform.position).normalized;
-                rb.AddForce(forceDir * explosionForce, ForceMode.Impulse);
+
+                if (rb.GetComponent<AgentLimb>() != null)
+                    rb.AddForce(forceDir * explosionForce / 3.3f, ForceMode.Impulse);
+                else 
+                    rb.AddForce(forceDir * explosionForce, ForceMode.Impulse);
 
                 Vector3 randomTorque = Random.onUnitSphere * explosionForce * 0.5f;
                 rb.AddTorque(randomTorque, ForceMode.Impulse);

@@ -2,13 +2,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraTilt : MonoBehaviour
+public class CameraLean : MonoBehaviour
 {
     Camera cam;
     Quaternion rotationBuffer;
     InputAction move;
     Coroutine leanCR;
-    float leanAngle = 4f;
+
+    [Range(0.1f, 8f)] [SerializeField] private float leanAngle; 
+    [Range(0.1f, 1f)] [SerializeField] private float leanTransitionDuration;
 
     float _tilt;
 
@@ -41,21 +43,17 @@ public class CameraTilt : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            lean = -1f;
+            lean = 1f;
         }        
         else if (Input.GetKey(KeyCode.D))
         {
-            lean = 1f;
+            lean = -1f;
         }
-        //else
-        //{
-        //    lean = 0f;
-        //}
 
         Tilt = lean;
 
         if (leanCR != null)
-            MainCamBuffer.i.RotationBuffer += rotationBuffer.eulerAngles;
+            MainCamBuffers.i.RotationBuffer += rotationBuffer.eulerAngles;
     }
 
 
@@ -63,15 +61,14 @@ public class CameraTilt : MonoBehaviour
     {
         rotationBuffer = cam.transform.rotation;
 
-        float duration = 0.11f;
         float time = 0f;
 
         float startZ = cam.transform.localEulerAngles.z;
         if (startZ > 180f) startZ -= 360f; // normalize to [-180, 180]
 
-        while (time < duration)
+        while (time < leanTransitionDuration)
         {
-            float t = time / duration;
+            float t = time / leanTransitionDuration;
             float z = Mathf.Lerp(startZ, targetZ, t);
             rotationBuffer = Quaternion.Euler(0f, 0f, z);
             time += Time.deltaTime;

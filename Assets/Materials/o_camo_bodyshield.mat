@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Camo
+  m_Name: o_camo_bodyshield
   m_Shader: {fileID: -6465566751694194690, guid: 529cee880cd3e444e830873c8ea4a1cb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -38,12 +38,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _NoiseSize: 22.87
-    - _NoiseStrength: 0.03
+    - _NoiseSize: 88.46
+    - _NoiseStrength: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0.015686275}
+    - _BaseColor: {r: 0.7924528, g: 0.5870634, b: 0.5644357, a: 0.105882354}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &8068994477483443799
